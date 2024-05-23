@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Plotter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        a {
+            text-decoration: none;
+        }
+        a {
+            display: flex;
+            justify-content: center;
+            width: 97%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 14px;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            color: #333;
+        }
+        form {
+            width: 80%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 3px rgba(0,0,0,0.3);
+        }
+        label {
+            font-weight: bold;
+            color: #666;
+        }
+        input[type="text"] {
+            width: calc(100% - 10px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="hidden"] {
+            display: none;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Insira os Valores</h1>
+    <form method="post" onsubmit="return validateForm()">
+        <label for="x">X Identificações (separados por vírgula):</label><br>
+        <input type="text" id="x" name="x" value="seg, ter, qua, qui, sex"><br>
+        <label for="y">Y Valores (separados por vírgula):</label><br>
+        <input type="text" id="y" name="y" value="1000, 4000, 3000, 2500, 5000"><br><br>
+        <input type="hidden" name="plot_type" value="bar">
+        <button type="submit" formaction="/bar">Bar Chart</button>
+        <button type="submit" formaction="/line">Line Chart</button>
+        <button type="submit" formaction="/scatter">Scatter Chart</button>
+        <button type="submit" formaction="/bubble">Bubble Chart</button>
+        <button type="submit" formaction="/dot">Dot Chart</button>
+        <a href="/create_database">Create Database</a>
+        <a href="/insert">Insert Random Numbers</a>
+        <a href="/sorted">Sort Random Numbers</a>
+    </form>
+    <script>
+        function validateForm() {
+            var x = document.getElementById("x").value;
+            var y = document.getElementById("y").value;
+
+            if (x.trim() === "" || y.trim() === "") {
+                alert("Please enter values for both X and Y.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>
